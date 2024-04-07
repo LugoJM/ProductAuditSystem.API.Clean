@@ -1,0 +1,497 @@
+[
+  {
+    "id": "1",
+    "contenido": "Conformidad de la etiqueta del módulo",
+    "evaluationPoints": {
+      "comments": "NOTA: Usar como referencia el DRW del producto",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verificar que la Calidad de Impresion sea elegible ( Color, Tamaño, Posicion, Legibilidad )."
+        },
+        {
+          "id": 2,
+          "contenido": "Verificar que no tenga rasguños, dobleses."
+        },
+        {
+          "id": 3,
+          "contenido": "Posicion en el Housing sea la correcta."
+        },
+        {
+          "id": 4,
+          "contenido": "Codigo Barra / QR sea escaneable y el dato coincida con la informacion plasmada."
+        },
+        {
+          "id": 5,
+          "contenido": "Validar que las Hologaciones sean elegibles."
+        },
+        {
+          "id": 6,
+          "contenido": "Verificar que la etiqueta cumpla con el dibujo ( Datos sean correctos de acuerdo al 00R ó ATF )."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 1,
+      "department": "Ing. de Calidad Cliente"
+    }
+  },
+  {
+    "id": "2",
+    "contenido": "Conformidad de la etiqueta de la caja",
+    "evaluationPoints": {
+      "comments": "",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Conti Part Number de Caja/Modulo Coincidan."
+        },
+        {
+          "id": 2,
+          "contenido": "Customer Part Number de Caja/Modulo sea el Mismo."
+        },
+        {
+          "id": 3,
+          "contenido": "Cantidad de Modulos Fisicamente sea Igual a la cantidad Impresa en Caja."
+        },
+        {
+          "id": 4,
+          "contenido": "Descripcion del Modulo sea el Correcto."
+        },
+        {
+          "id": 5,
+          "contenido": "# Caja sea igual a la de un Modulo contenido en la caja."
+        },
+        {
+          "id": 6,
+          "contenido": "Verificar que la Calidad de Impresion sea elegible ( Color, Tamaño, Posicion, Legibilidad )."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 1,
+      "department": "Ing. de Calidad Cliente"
+    }
+  },
+  {
+    "id": "3",
+    "contenido": "Conformidad del Empaque del producto",
+    "evaluationPoints": {
+      "comments": "",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verificar que la caja sea la correcta en base al Numero de parte."
+        },
+        {
+          "id": 2,
+          "contenido": "Colocacion del Producto en la caja es la correcta."
+        },
+        {
+          "id": 3,
+          "contenido": "Cantidad de Unidades esta de acuerdo a la etiqueta y espacio de la caja."
+        },
+        {
+          "id": 4,
+          "contenido": "Tamaño de la caja cumple con la especificacion del Producto."
+        },
+        {
+          "id": 5,
+          "contenido": "La caja, separador y tapadera se encuentran en buenas condiciones."
+        },
+        {
+          "id": 6,
+          "contenido": "Empaque cumple con los Estandares de ESD."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 2,
+      "department": "Ing. de Empaque"
+    }
+  },
+  {
+    "id": "4",
+    "contenido": "Conformidad de paletización",
+    "evaluationPoints": {
+      "comments": "",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verifique la conformidad de pallet(colocación, cantidad de caja) de acuerdo con las instrucciones de trabajo de empaque, escriba el número de WI."
+        },
+        {
+          "id": 2,
+          "contenido": "Verifique que la información del realese este de acuerdo con la etiqueta de empaque de la caja"
+        }
+      ],
+      "supportDepartment": "Ing. de Empaque"
+    },
+    "supportDepartment": {
+      "id": 2,
+      "department": "Ing. de Empaque"
+    }
+  },
+  {
+    "id": "5",
+    "contenido": "Conformidad dimensional",
+    "evaluationPoints": {
+      "comments": "",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verifique que el Diseño Anual esté definido y haga referencia a las medidas dimensionales. Haga referencia al número de WI."
+        },
+        {
+          "id": 2,
+          "contenido": "Verifique que los resultados dimensionales estén disponibles (podría ser a través de PPAP anual, verificaciones dimensionales en proceso o registros de diseño anual)."
+        },
+        {
+          "id": 3,
+          "contenido": "Verificar la conformidad de los resultados."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 3,
+      "department": "Ing. de SQM"
+    }
+  },
+  {
+    "id": "6",
+    "contenido": "Conformidad funcional",
+    "evaluationPoints": {
+      "comments": "",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verificar que la muestra a Evaluar tenga pase por todos los procesos Posteriroes a Empaque."
+        },
+        {
+          "id": 2,
+          "contenido": "Tomar Evidencia de la ultima prueba electrica pasada( Funcional Test )."
+        },
+        {
+          "id": 3,
+          "contenido": "Verificar que la cantidad de pruebas en MES se hallan realizado."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 4,
+      "department": "Auditor de Producto"
+    }
+  },
+  {
+    "id": "7",
+    "contenido": "Conformidad funcional",
+    "evaluationPoints": {
+      "comments": "",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Escribir Nombre de PTS que se usara para la realziacion de la Auditoria de Pruebas."
+        },
+        {
+          "id": 2,
+          "contenido": "Adjuntar el XML usado durante la Auditoria."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 5,
+      "department": "Ing. de Pruebas"
+    }
+  },
+  {
+    "id": "8",
+    "contenido": "Verificacion Programa Prueba Funcional",
+    "evaluationPoints": {
+      "comments": "",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verifique que exista un proceso de gestión de configuración de software de prueba adecuado."
+        },
+        {
+          "id": 2,
+          "contenido": "Verifique cómo la ingeniería de pruebas controla los cambios de software."
+        },
+        {
+          "id": 3,
+          "contenido": "Verificar cómo se aprueban los cambios (control electrónico o  proceso manual)."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 6,
+      "department": "NPL"
+    }
+  },
+  {
+    "id": "9",
+    "contenido": "Pruebas de CPK",
+    "evaluationPoints": {
+      "comments": "Solicitar Evidencia del estudio pPCA ( CPK ) realizado durante la liberacion del número de parte auditado. ",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "ICT"
+        },
+        {
+          "id": 2,
+          "contenido": "EOL"
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 7,
+      "department": "Ing. de Producto"
+    }
+  },
+  {
+    "id": "10.A",
+    "contenido": "Protocolo Prueba ( MES ) vs PTS",
+    "evaluationPoints": {
+      "comments": "",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Realizar Auditoria de Pruebas Funcionales de EOL vs PTS."
+        },
+        {
+          "id": 2,
+          "contenido": "Verificar el Resultado de la Auditoria agredando si el resultado fue satisfactorio."
+        },
+        {
+          "id": 3,
+          "contenido": "Notificar al Responsable de la Estacion si existe alguna discrepancia."
+        },
+        {
+          "id": 4,
+          "contenido": "Escribir Nombre de PTS que se usara para la realizacion de la Auditoria de Pruebas."
+        },
+        {
+          "id": 5,
+          "contenido": "Adjuntar el XML usado durante la Auditoria (si aplica)."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 7,
+      "department": "Ing. de Producto"
+    }
+  },
+  {
+    "id": "10.B",
+    "contenido": "¿Las características especiales (SC) marcadas en el plano del cliente están cubiertas en uno o más puntos de prueba? (Documento de referencia CAM030007-F01)",
+    "evaluationPoints": {
+      "comments": "NOTA: Si el producto cuenta con caracteristicas especiales, especificar cuales serian y agregar evidencia",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Confirmar si el producto tiene caracteristicas especiales de producto."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 8,
+      "department": "Auditor de Producto"
+    }
+  },
+  {
+    "id": "10.C",
+    "contenido": "Caracterisiticas Especiales ",
+    "evaluationPoints": {
+      "comments": "",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Estan todas las caracteristicas especiales especificadas en el PTS. (solo aplicarian las de producto)."
+        },
+        {
+          "id": 2,
+          "contenido": "Estas Caracterisiticas especiales son evaluadas por algun metodo estadistico (CPK), especificar resultado."
+        },
+        {
+          "id": 3,
+          "contenido": "Están las características especiales (SC) marcadas en el dibujo del cliente vinculadas a PFMEA, plan de control y diagrama de flujo."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 7,
+      "department": "Ing. de Producto"
+    }
+  },
+  {
+    "id": "10.D",
+    "contenido": "¿Matriz de Cobertura de Prueba para la presencia y alineación de Pines?",
+    "evaluationPoints": {
+      "comments": "NOTA: Agregar Log File e imagen de PinChecker de la estacion donde fue verificada la unidad muestra",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "La Matriz de Cobertura de Prueba para el Producto incluye una Cobertura del 100% para la presencia y alineación de Pines, Adjuntar Evidencia de Ejercicio Realizado para Mostrar Efectividad"
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 1,
+      "department": "Ing. de Calidad Cliente"
+    }
+  },
+  {
+    "id": "10.E",
+    "contenido": "Altura de Pines",
+    "evaluationPoints": {
+      "comments": "NOTA: Tomar foto de la evidencia realizada de WI asi como del formato donde se captura las mediciones de los pines.",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verificar que el producto cumpla con la altura de pines de acuerdo al dibujo, para los productos que aplique en pessfit."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 12,
+      "department": "Auditor de Calidad"
+    }
+  },
+  {
+    "id": "10.F",
+    "contenido": "Thermal Conductive",
+    "evaluationPoints": {
+      "comments": "NOTA: Tomar Evidencia de la muestra a evaluar para compararla contra la referencia",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verificar cantidad de thermal conductive aplicado al PCB sea la correcta, tomar como referencia el dibujo"
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 12,
+      "department": "Auditor de Calidad"
+    }
+  },
+  {
+    "id": "10.G",
+    "contenido": "Conformal Coating",
+    "evaluationPoints": {
+      "comments": "Tomar evidencia de las mediciones de la muestra realizada",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verificar que se cumpla con la medicion de conformal coating aplicado al PCB por parte del Auditor de Calidad"
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 12,
+      "department": "Auditor de Calidad"
+    }
+  },
+  {
+    "id": "10.H",
+    "contenido": "Componentes No Reparables",
+    "evaluationPoints": {
+      "comments": "",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Mostar relacion de Componentes No reparables por Cliente , Adjuntar Layout de Componentes No reparables"
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 13,
+      "department": "Reparacion"
+    }
+  },
+  {
+    "id": "10.I",
+    "contenido": "Prueba de Flamabilidad",
+    "evaluationPoints": {
+      "comments": "NOTA: Solo para productos Mercedes-Benz  Enlace: Q: \\ 666-Public \\ 40_Pruebas de inflamabilidad. ",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verifique que la prueba anual de flamabilidad sea válida "
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 1,
+      "department": "Ing. de Calidad Cliente"
+    }
+  },
+  {
+    "id": "10.J",
+    "contenido": "PV",
+    "evaluationPoints": {
+      "comments": "NOTA: Solo aplica a Stellantis",
+      "points": [
+        {
+          "id": 1,
+          "contenido": " Mostrar evidencia del ultimo PV aprobado por cliente."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 1,
+      "department": "Ing. de Calidad Cliente"
+    }
+  },
+  {
+    "id": "10.K",
+    "contenido": "Verificación de fusibles",
+    "evaluationPoints": {
+      "comments": "NOTA: Adjuntar evidencia (Matriz o WI de fusibles).",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verificar la cantidad de fusibles de acuerdo al modelo auditado asi como tambien el tipo de fusibles utilizado de acuerdo a la matriz."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 11,
+      "department": "Jefe de Linea/Operador"
+    }
+  },
+  {
+    "id": "10.L",
+    "contenido": "Verificación de brackets",
+    "evaluationPoints": {
+      "comments": "NOTA: Adjuntar evidencia (Matriz o WI de brackets).",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verificar la cantidad de brackets de acuerdo al modelo auditado de acuerdo a la matriz"
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 12,
+      "department": "Auditor de Calidad"
+    }
+  },
+  {
+    "id": "10.M",
+    "contenido": "Pruebas Termales",
+    "evaluationPoints": {
+      "comments": "NOTA: En caso de que aplique agregar evidencia de muestreo",
+      "points": [
+        {
+          "id": 1,
+          "contenido": "Verificar que las pruebas térmicas se realicen de acuerdo con los requisitos aplicables definidos en el plan de control y documentos relacionados (por ejemplo, documentos del cliente e instrucciones del operador)."
+        }
+      ]
+    },
+    "supportDepartment": {
+      "id": 1,
+      "department": "Ing. de Calidad Cliente"
+    }
+  }
+]
