@@ -9,6 +9,7 @@ using ProductAuditSystem.Application.Features.Roles.Queries.GetRoles;
 using ProductAuditSystem.Application.Features.Roles.Queries.GetRol;
 using ProductAuditSystem.API.Controllers.Common;
 using ProductAuditSystem.Application.Responses;
+using ProductAuditSystem.Application.Features.Roles.Commands.CommandUpdateRol;
 
 namespace ProductAuditSystem.API.Controllers;
 
@@ -47,13 +48,22 @@ public class Roles : BaseController
         return Ok(response);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult<BaseCommandResponse>> Put(CommandDeleteRol comandoBorrarRol)
+    public async Task<ActionResult<BaseCommandResponse>> Put(CommandUpdateRol comandoBorrarRol)
     {
         var response = await _mediator.Send(comandoBorrarRol);
+        return Ok(response);
+    }
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<BaseCommandResponse>> Delete(int id)
+    {
+        var response = await _mediator.Send(new CommandDeleteRol(id));
         return Ok(response);
     }
 }
