@@ -11,18 +11,23 @@ internal sealed class CommandUpdateUserHandler : IRequestHandler<CommandUpdateUs
 {
     private readonly IMapper _mapper;
     private readonly IUserRepository _userRepository;
+    private readonly IRolesRepository _rolesRepository;
 
-    public CommandUpdateUserHandler(IMapper mapper, IUserRepository userRepository)
+    public CommandUpdateUserHandler(IMapper mapper, IUserRepository userRepository, IRolesRepository rolesRepository)
     {
         _mapper = mapper;
         _userRepository = userRepository;
+        _rolesRepository = rolesRepository;
     }
     public async Task<BaseCommandResponse> Handle(CommandUpdateUser request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetByIdAsync(request.Id);
+        var validator = new CommandUpdateUserValidator(_rolesRepository, _userRepository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
 
-        if (user is null)
-            throw new NotFoundException(nameof(user), request.Id);
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando Actualizar Usuario Invalido", validationResults);
+
+        var user = await _userRepository.GetByIdAsync(request.Id);
 
         _mapper.Map(request, user);
 
