@@ -19,10 +19,13 @@ internal sealed class CommandUpdateAuditStatusHandler : IRequestHandler<CommandU
     }
     public async Task<BaseCommandResponse> Handle(CommandUpdateAuditStatus request, CancellationToken cancellationToken)
     {
-        var auditStatusToUpdate = await _auditStatusRepository.GetByIdAsync(request.Id);
+        var validator = new CommandUpdateAuditStatusValidator(_auditStatusRepository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
 
-        if (auditStatusToUpdate == null)
-            throw new NotFoundException(nameof(auditStatusToUpdate), request.Id);
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando Actualizar Status Auditoria Invalido", validationResults);
+
+        var auditStatusToUpdate = await _auditStatusRepository.GetByIdAsync(request.Id);
 
         _mapper.Map(request, auditStatusToUpdate);
 

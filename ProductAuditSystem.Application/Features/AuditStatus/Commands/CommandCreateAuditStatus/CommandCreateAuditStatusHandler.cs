@@ -2,6 +2,7 @@
 using AutoMapper;
 using MediatR;
 using ProductAuditSystem.Application.Contracts.Persistence;
+using ProductAuditSystem.Application.Exceptions;
 using ProductAuditSystem.Application.Responses;
 using ProductAuditSystem.Domain;
 
@@ -19,8 +20,15 @@ internal sealed class CommandCreateAuditStatusHandler : IRequestHandler<CommandC
     }
     public async Task<BaseCommandResponse> Handle(CommandCreateAuditStatus request, CancellationToken cancellationToken)
     {
+        var validator = new CommandCreateAuditStatusValidator(_auditStatusRepository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
+
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando actualizar status auditoria invalido", validationResults);
+
         var auditStatusToCreate = _mapper.Map<Domain.AuditStatus>(request);
         await _auditStatusRepository.CreateAsync(auditStatusToCreate);
+
         return new BaseCommandResponse
         {
             Id = auditStatusToCreate.Id,
