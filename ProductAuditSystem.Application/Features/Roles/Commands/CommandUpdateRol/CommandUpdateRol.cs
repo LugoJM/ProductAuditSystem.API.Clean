@@ -5,5 +5,6 @@ namespace ProductAuditSystem.Application.Features.Roles.Commands.CommandUpdateRo
 
 public class CommandUpdateRol : IRequest<BaseCommandResponse>
 {
-    public string Rol { get; set; } = string.Empty;
+    public int Id { get; set; }
+    public string RolNombre { get; set; } = string.Empty;
 }
