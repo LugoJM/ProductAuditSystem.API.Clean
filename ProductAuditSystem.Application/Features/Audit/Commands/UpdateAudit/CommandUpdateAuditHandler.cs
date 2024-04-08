@@ -14,24 +14,29 @@ internal sealed class CommandUpdateAuditHandler : IRequestHandler<CommandUpdateA
     private readonly IMapper _mapper;
     private readonly IAuditRepository _auditRepository;
     private readonly IAuditUserRepository _auditUserRepository;
+    private readonly IOEMsRepository _oEMsRepository;
+    private readonly IAuditStatusRepository _auditStatusRepository;
 
     public CommandUpdateAuditHandler(IMapper mapper, IAuditRepository auditRepository,
-        IAuditUserRepository auditUserRepository)
+        IAuditUserRepository auditUserRepository, IOEMsRepository oEMsRepository, IAuditStatusRepository auditStatusRepository)
     {
         _mapper = mapper;
         _auditRepository = auditRepository;
         _auditUserRepository = auditUserRepository;
+        _oEMsRepository = oEMsRepository;
+        _auditStatusRepository = auditStatusRepository;
     }
     public async Task<BaseCommandResponse> Handle(CommandUpdateAudit request, CancellationToken cancellationToken)
     {
+        var validator = new CommandUpdateAuditValidator(_oEMsRepository, _auditRepository, _auditStatusRepository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
+
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando Actualizar Auditoria Invalido", validationResults);
+
         var auditToUpdate = _mapper.Map<Domain.Audit>(request);
 
         await _auditRepository.UpdateAsync(auditToUpdate);
-
-        if (request.Auditores == null || request.Auditores.Count == 0)
-        {
-            throw new BadRequestException("Una auditoria debe tener minimo 1 auditor");
-        }
 
         var updatedAuditUsers = request.Auditores.Select(au => new AuditUser { AuditoriaID = request.Id, UsuarioID = au.Id }).ToList(); 
 
