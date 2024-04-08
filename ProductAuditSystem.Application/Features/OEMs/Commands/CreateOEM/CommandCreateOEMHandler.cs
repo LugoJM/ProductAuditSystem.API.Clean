@@ -20,11 +20,13 @@ internal sealed class CommandCreateOEMHandler : IRequestHandler<CommandCreateOEM
     }
     public async Task<BaseCommandResponse> Handle(CommandCreateOEM request, CancellationToken cancellationToken)
     {
-        var createOEM = _mapper.Map<OEM>(request);
-        var OEMExists = _OEMsRepository.CheckOEM(createOEM);
+        var validator = new CommandCreateOEMValidator(_OEMsRepository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
 
-        if (OEMExists.Result)
-            throw new BadRequestException("Este OEM ya se encuentra registrado!");
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando crear OEM invalido", validationResults);
+
+        var createOEM = _mapper.Map<OEM>(request);
 
         await _OEMsRepository.CreateAsync(createOEM);
         return new BaseCommandResponse

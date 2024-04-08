@@ -19,14 +19,18 @@ internal sealed class CommandUpdateOEMHandler : IRequestHandler<CommandUpdateOEM
     }
     public async Task<BaseCommandResponse> Handle(CommandUpdateOEM request, CancellationToken cancellationToken)
     {
-        var OEM = await _OEMsRepository.GetByIdAsync(request.Id);
+        var validator = new CommandUpdateOEMValidator(_OEMsRepository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
 
-        if (OEM is null)
-            throw new NotFoundException(nameof(OEM), request.Id);
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando Actualizar OEM Invalido", validationResults);
+
+        var OEM = await _OEMsRepository.GetByIdAsync(request.Id);
 
         _mapper.Map(request, OEM);
 
         await _OEMsRepository.UpdateAsync(OEM);
+
         return new BaseCommandResponse
         {
             Message = $"Se ha editado correctamente el OEM con ID:{request.Id}",
