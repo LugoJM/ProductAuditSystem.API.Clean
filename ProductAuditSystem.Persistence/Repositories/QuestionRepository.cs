@@ -34,6 +34,7 @@ public class QuestionRepository : GenericRepository<Question>, IQuestionReposito
     public async Task<List<Question>> GetAuditQuestions(int auditID)
     {
         var auditQuestions = await _context.Questions
+            .AsNoTracking()
             .Include(q => q.PuntosAEvaluar)
             .Include(q => q.Files)
             .Where(q => q.AuditoriasPreguntas.Any(aq => aq.AuditoriaID == auditID))

@@ -28,13 +28,17 @@ public class FilesRepository : GenericRepository<Files>, IFilesRepository
 
     public Task<Files> GetFile(int id)
     {
-        var file = _context.Files.FirstOrDefaultAsync(f => f.Id == id);
+        var file = _context.Files
+            .AsNoTracking()
+            .FirstOrDefaultAsync(f => f.Id == id);
         return file;
     }
 
     public async Task<List<Files>> GetFiles(int questionID)
     {
-        var files = await _context.Files.Where(f => f.QuestionID == questionID)
+        var files = await _context.Files
+            .AsNoTracking()
+            .Where(f => f.QuestionID == questionID)
             .ToListAsync();
         return files;
     }

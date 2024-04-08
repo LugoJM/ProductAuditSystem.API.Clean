@@ -24,7 +24,9 @@ public class AuditRepository : GenericRepository<Audit>, IAuditRepository
 
     public async Task<Audit> GetAudit(int id)
     {
-        var audit = await _context.Audits.Include(aq => aq.AuditoriasPreguntas)
+        var audit = await _context.Audits
+            .AsNoTracking()
+            .Include(aq => aq.AuditoriasPreguntas)
             .ThenInclude(p => p.Pregunta)
             .ThenInclude(dpto => dpto.Soporte)
             .Include(aq => aq.AuditoriasPreguntas)
