@@ -2,28 +2,33 @@
 using AutoMapper;
 using MediatR;
 using ProductAuditSystem.Application.Contracts.Persistence;
+using ProductAuditSystem.Application.Exceptions;
 using ProductAuditSystem.Application.Responses;
 using ProductAuditSystem.Domain;
 
 namespace ProductAuditSystem.Application.Features.Users.Commands.CreateUser;
 
-internal sealed class CreateUserCommandHandler : IRequestHandler<CommandCreateUser, BaseCommandResponse>
+internal sealed class CommandCreateUserHandler : IRequestHandler<CommandCreateUser, BaseCommandResponse>
 {
     private readonly IMapper _mapper;
     private readonly IUserRepository _userRepository;
+    private readonly IRolesRepository _rolesRepository;
 
-    public CreateUserCommandHandler(IMapper mapper, IUserRepository userRepository)
+    public CommandCreateUserHandler(IMapper mapper, IUserRepository userRepository, IRolesRepository rolesRepository)
     {
         _mapper = mapper;
         _userRepository = userRepository;
+        _rolesRepository = rolesRepository;
     }
     public async Task<BaseCommandResponse> Handle(CommandCreateUser request, CancellationToken cancellationToken)
     {
-        var createUser = _mapper.Map<User>(request);
-        var userExists = await _userRepository.CheckUser(createUser);
+        var validator = new CommandCreateUserValidator(_rolesRepository,_userRepository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
 
-        if (userExists)
-            throw new Exception("Este usuario ya se encuentra registrado!");
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando Crear Usuario Invalido", validationResults);
+
+        var createUser = _mapper.Map<User>(request);
 
         await _userRepository.CreateAsync(createUser);
 
