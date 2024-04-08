@@ -17,4 +17,15 @@ public class OEMRepository : GenericRepository<OEM>, IOEMsRepository
         var OEMExists = await _context.OEMs.AnyAsync(u => u.Nombre == oem.Nombre);
         return OEMExists;
     }
+
+    public async Task<OEM?> FindOEM(string oemName)
+    {
+        var query = _context.OEMs.AsNoTracking().AsQueryable();
+        if (!string.IsNullOrEmpty(oemName))
+        {
+            query = query.Where(oem => oem.Nombre.Equals(oemName));
+        }
+        var oem = await query.FirstOrDefaultAsync();
+        return oem;
+    }
 }
