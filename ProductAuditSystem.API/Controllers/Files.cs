@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductAuditSystem.API.Controllers.Common;
+using ProductAuditSystem.Application.Common.SharedDTOs;
 using ProductAuditSystem.Application.Features.File.Commands.Addfile;
 using ProductAuditSystem.Application.Features.File.Commands.DeleteFile;
 using ProductAuditSystem.Application.Features.File.Queries.GetFile;
@@ -23,7 +24,7 @@ public class Files : BaseController
     [HttpGet("questionFiles")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<List<Files>>> GetFiles(int questionID)
+    public async Task<ActionResult<List<FilesDTO>>> GetFiles(int questionID)
     {
         var files = await _mediator.Send(new GetFilesQuery(questionID));
         return Ok(files);
@@ -32,7 +33,7 @@ public class Files : BaseController
     [HttpGet("{fileID}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<Files>> Get(int fileID)
+    public async Task<ActionResult<FilesDTO>> Get(int fileID)
     {
         var file = await _mediator.Send(new GetFileQuery(fileID));
         return Ok(file);
