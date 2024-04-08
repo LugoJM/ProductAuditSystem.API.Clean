@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using ProductAuditSystem.Application.Contracts.Persistence;
+using ProductAuditSystem.Application.Exceptions;
 using ProductAuditSystem.Application.Responses;
 
 namespace ProductAuditSystem.Application.Features.Roles.Commands.CommandCreateRol;
@@ -18,6 +19,12 @@ internal sealed class CommandCreateRolHandler : IRequestHandler<CommandCreateRol
 
     public async Task<BaseCommandResponse> Handle(CommandCreateRol request, CancellationToken cancellationToken)
     {
+        var validator = new CommandCreateRolValidator(_rolesRepository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
+
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando Crear Rol Invalido", validationResults);
+
         var createRol = _mapper.Map<Domain.Rol>(request);
 
         await _rolesRepository.CreateAsync(createRol);
@@ -25,7 +32,7 @@ internal sealed class CommandCreateRolHandler : IRequestHandler<CommandCreateRol
         return new BaseCommandResponse
         {
             Id = createRol.Id,
-            Message = $"Se ha creado exitosamente el Rol con ID{createRol.Id}",
+            Message = $"Se ha creado exitosamente el Rol con ID:{createRol.Id}",
             Success = true
         };
     }
