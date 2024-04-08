@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using ProductAuditSystem.Application.Contracts.Persistence;
+using ProductAuditSystem.Application.Exceptions;
 using ProductAuditSystem.Application.Responses;
 using ProductAuditSystem.Domain;
 
@@ -23,11 +24,17 @@ internal sealed class CommandCreateAuditHandler : IRequestHandler<CommandCreateA
     }
     public async Task<BaseCommandResponse> Handle(CommandCreateAudit request, CancellationToken cancellationToken)
     {
+        var validator = new CommandCreateAuditValidator();
+        var validatorResults = await validator.ValidateAsync(request, cancellationToken);
+
+        if (validatorResults.Errors.Any())
+            throw new BadRequestException("Comando Crear Auditoria Invalido", validatorResults);
+
         var auditToCreate = _mapper.Map<Domain.Audit>(request);
 
         await _auditRepository.CreateAsync(auditToCreate);
 
-        var auditUsers = request.Auditores.Select(a => new AuditUser { AuditoriaID = auditToCreate.Id, UsuarioID = a.Id }).ToList();
+        var auditUsers = request.Auditores.Select(a => new AuditUser { AuditoriaID = auditToCreate.Id, UsuarioID = a.AuditorUserID }).ToList();
 
         await _auditUserRepository.AddAuditUsers(auditUsers);
 
