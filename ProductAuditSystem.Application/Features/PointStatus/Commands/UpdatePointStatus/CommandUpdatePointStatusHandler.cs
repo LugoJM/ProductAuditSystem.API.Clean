@@ -19,10 +19,13 @@ internal sealed class CommandUpdatePointStatusHandler : IRequestHandler<CommandU
     }
     public async Task<BaseCommandResponse> Handle(CommandUpdatePointStatus request, CancellationToken cancellationToken)
     {
-        var pointStatusToUpdate = await _pointStatusRepository.GetByIdAsync(request.Id);
+        var validator = new CommandUpdatePointStatusValidator(_pointStatusRepository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
 
-        if (pointStatusToUpdate == null)
-            throw new NotFoundException(nameof(PointStatus), request.Id);
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando Actualizar Status Point Invalido", validationResults);
+
+        var pointStatusToUpdate = await _pointStatusRepository.GetByIdAsync(request.Id);
 
         _mapper.Map(request, pointStatusToUpdate);
 
