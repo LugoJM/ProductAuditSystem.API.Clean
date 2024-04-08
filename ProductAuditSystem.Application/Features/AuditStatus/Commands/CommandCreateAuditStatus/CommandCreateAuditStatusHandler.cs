@@ -8,7 +8,7 @@ using ProductAuditSystem.Domain;
 
 namespace ProductAuditSystem.Application.Features.AuditStatus.Commands.CommandCreateAuditStatus;
 
-internal sealed class CommandCreateAuditStatusHandler : IRequestHandler<CommandCreateAuditStatus, BaseCommandResponse>
+public sealed class CommandCreateAuditStatusHandler : IRequestHandler<CommandCreateAuditStatus, BaseCommandResponse>
 {
     private readonly IMapper _mapper;
     private readonly IAuditStatusRepository _auditStatusRepository;

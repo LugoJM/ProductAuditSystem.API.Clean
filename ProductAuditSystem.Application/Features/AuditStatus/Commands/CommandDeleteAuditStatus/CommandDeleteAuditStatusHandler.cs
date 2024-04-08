@@ -6,7 +6,7 @@ using ProductAuditSystem.Application.Responses;
 
 namespace ProductAuditSystem.Application.Features.AuditStatus.Commands.CommandDeleteAuditStatus;
 
-internal sealed class CommandDeleteAuditStatusHandler : IRequestHandler<CommandDeleteAuditStatus, BaseCommandResponse>
+public sealed class CommandDeleteAuditStatusHandler : IRequestHandler<CommandDeleteAuditStatus, BaseCommandResponse>
 {
     private readonly IAuditStatusRepository _auditStatusRepository;
 

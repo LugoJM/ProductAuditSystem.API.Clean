@@ -7,7 +7,7 @@ using ProductAuditSystem.Application.Responses;
 
 namespace ProductAuditSystem.Application.Features.AuditStatus.Commands.CommandUpdateAuditStatus;
 
-internal sealed class CommandUpdateAuditStatusHandler : IRequestHandler<CommandUpdateAuditStatus, BaseCommandResponse>
+public sealed class CommandUpdateAuditStatusHandler : IRequestHandler<CommandUpdateAuditStatus, BaseCommandResponse>
 {
     private readonly IMapper _mapper;
     private readonly IAuditStatusRepository _auditStatusRepository;

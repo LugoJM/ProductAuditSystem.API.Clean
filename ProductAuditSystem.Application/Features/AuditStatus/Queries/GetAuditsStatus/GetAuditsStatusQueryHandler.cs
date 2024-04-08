@@ -4,7 +4,7 @@ using ProductAuditSystem.Application.Common.SharedDTOs;
 using ProductAuditSystem.Application.Contracts.Persistence;
 namespace ProductAuditSystem.Application.Features.AuditStatus.Queries.GetAuditsStatus;
 
-internal sealed class GetAuditsStatusQueryHandler : IRequestHandler<GetAuditsStatusQuery, List<AuditStatusDTO>>
+public sealed class GetAuditsStatusQueryHandler : IRequestHandler<GetAuditsStatusQuery, List<AuditStatusDTO>>
 {
     private readonly IMapper _mapper;
     private readonly IAuditStatusRepository _auditStatusRepository;

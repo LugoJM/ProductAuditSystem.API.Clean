@@ -7,7 +7,7 @@ using ProductAuditSystem.Application.Exceptions;
 
 namespace ProductAuditSystem.Application.Features.AuditStatus.Queries.GetAuditStatus;
 
-internal sealed class GetAuditStatusQueryHandler : IRequestHandler<GetAuditStatusQuery, AuditStatusDTO>
+public sealed class GetAuditStatusQueryHandler : IRequestHandler<GetAuditStatusQuery, AuditStatusDTO>
 {
     private readonly IMapper _mapper;
     private readonly IAuditStatusRepository _auditStatusRepository;
