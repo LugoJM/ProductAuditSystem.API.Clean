@@ -1,7 +1,7 @@
 ﻿
 using MediatR;
-using ProductAuditSystem.Domain;
+using ProductAuditSystem.Application.Common.SharedDTOs;
 
 namespace ProductAuditSystem.Application.Features.File.Queries.GetFile;
 
-public record GetFileQuery(int FileID) : IRequest<Files>;
+public record GetFileQuery(int FileID) : IRequest<FilesDTO>;
