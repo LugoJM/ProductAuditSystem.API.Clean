@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using ProductAuditSystem.Application.Contracts.Persistence;
+using ProductAuditSystem.Application.Exceptions;
+using ProductAuditSystem.Application.Features.File.Commands.Addfiles;
 using ProductAuditSystem.Application.Responses;
-using ProductAuditSystem.Domain;
 
 namespace ProductAuditSystem.Application.Features.File.Commands.Addfile;
 
@@ -11,15 +11,23 @@ namespace ProductAuditSystem.Application.Features.File.Commands.Addfile;
 internal sealed class CommandAddFilesHandler : IRequestHandler<CommandAddFiles, BaseCommandResponse>
 {
     private readonly IFilesRepository _filesRepository;
-    private readonly ProccessFiles _proccessFiles;
+    private readonly IQuestionRepository _questionRespository;
+    private readonly ProccessFiles _proccessFiles = new();
 
-    public CommandAddFilesHandler(IFilesRepository filesRepository)
+    public CommandAddFilesHandler(IFilesRepository filesRepository, IQuestionRepository questionRespository)
     {
         _filesRepository = filesRepository;
-        _proccessFiles = new();
+        _questionRespository = questionRespository;
     }
+
     public async Task<BaseCommandResponse> Handle(CommandAddFiles request, CancellationToken cancellationToken)
     {
+        var validator = new CommandAddFilesValidator(_questionRespository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
+
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando Agregar Archivos Invalido", validationResults);
+
         var filesEntities = await _proccessFiles.GetFiles(request.Files, request.QuestionId, 
             request.IsReference, request.IsReferenceDocument);
 
