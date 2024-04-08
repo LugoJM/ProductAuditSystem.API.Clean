@@ -19,10 +19,13 @@ internal sealed class CommandUpdateSupportDepartmentHandler : IRequestHandler<Co
     }
     public async Task<BaseCommandResponse> Handle(CommandUpdateSupportDepartment request, CancellationToken cancellationToken)
     {
-        var updateSupportDepartment = await _supportDepartmentRepository.GetByIdAsync(request.Id);
+        var validator = new CommandUpdateSupportDepartmentValidator(_supportDepartmentRepository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
 
-        if (updateSupportDepartment == null)
-            throw new NotFoundException(nameof(updateSupportDepartment), request.Id);
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando Actualizar Departamento de Soporte Invalido", validationResults);
+
+        var updateSupportDepartment = await _supportDepartmentRepository.GetByIdAsync(request.Id);
 
         _mapper.Map(request, updateSupportDepartment);
 

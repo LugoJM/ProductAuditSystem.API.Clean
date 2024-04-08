@@ -2,6 +2,7 @@
 using AutoMapper;
 using MediatR;
 using ProductAuditSystem.Application.Contracts.Persistence;
+using ProductAuditSystem.Application.Exceptions;
 using ProductAuditSystem.Application.Responses;
 
 namespace ProductAuditSystem.Application.Features.SupportDepartment.Commands.CreateSupportDepartment;
@@ -18,6 +19,12 @@ internal sealed class CommandCreateSupportDepartmentHandler : IRequestHandler<Co
     }
     public async Task<BaseCommandResponse> Handle(CommandCreateSupportDepartment request, CancellationToken cancellationToken)
     {
+        var validator = new CommandCreateSupportDepartmentValidator(_supportDepartmentRepository);
+        var validationResults = await validator.ValidateAsync(request, cancellationToken);
+
+        if (validationResults.Errors.Any())
+            throw new BadRequestException("Comando Crear Departamento De Soporte Invalido", validationResults);
+
         var createDepartment = _mapper.Map<Domain.SupportDepartment>(request);
 
         await _supportDepartmentRepository.CreateAsync(createDepartment);
