@@ -1,5 +1,4 @@
 ﻿
-using AutoMapper;
 using MediatR;
 using ProductAuditSystem.Application.Contracts.Persistence;
 using ProductAuditSystem.Application.Exceptions;
